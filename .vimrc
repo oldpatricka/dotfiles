@@ -1,33 +1,50 @@
-" Set up vundle
 set nocompatible
-"filetype on 
-"filetype off  " required!
+
+" Set up vundle
 set rtp+=~/.vim/vundle.git/ 
 call vundle#rc()
 
 " Bundles (use :BundleInstall to install)
 Bundle 'tpope/vim-fugitive'
 Bundle 'ervandew/supertab'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'git://git.wincent.com/command-t.git'
 
-"filetype plugin indent on
 let mapleader = ","
 syntax on
+
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+\%#\@<!$/
+
+" Set colours
+colorscheme solarized
+set background=light
+
+" Highlight the 80 column line
+set colorcolumn=81
+highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+
+" Set GUI display preferences
+set ruler
+set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
+
+" Set locations
+set spellfile=~/.vimwords.add
+set directory=~/.vim/swap,.
+
+
+" Set text editing behaviour
 set autoindent
 set smartindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set ruler
-set incsearch
 set smartcase
 set backspace=2
-set spellfile=~/.vimwords.add
-set bg=light
 set expandtab
-set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
-set directory=~/.vim/swap,.
-autocmd BufRead *.as set filetype=actionscript
+set incsearch
+
 
 if has("mouse")
     set mouse=a
