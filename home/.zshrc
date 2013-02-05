@@ -16,6 +16,8 @@ export INTERACTIVE_COMMENTS="true"
 # Comment this out to disable weekly auto-update checks
 export DISABLE_AUTO_UPDATE="true"
 
+export EDITOR=/usr/local/bin/vim
+
 # Uncomment following line if you want to disable colors in ls
 # export DISABLE_LS_COLORS="true"
 
@@ -32,8 +34,6 @@ source $ZSH/oh-my-zsh.sh
 
 #aliases
 alias git='nocorrect hub'
-source /Users/patricka/.rvm/scripts/rvm
 
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-

@@ -1,15 +1,20 @@
 set nocompatible
+filetype on
+filetype off
 
 " Set up vundle
-set rtp+=~/.vim/vundle.git/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " Bundles (use :BundleInstall to install)
+Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'ervandew/supertab'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'git://github.com/kien/ctrlp.vim.git'
-Bundle 'klen/python-mode'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'tsaleh/vim-matchit'
+"Bundle 'klen/python-mode'
 
 let mapleader = ","
 syntax on
@@ -28,7 +33,7 @@ filetype plugin indent on
 " Disable Python folding
 let g:pymode_folding = 0
 let g:pymode_rope_goto_def_newwin = "new"
-let g:pymode_lint_ignore = "W,E501"
+let g:pymode_lint_ignore = "W,E501,E128,E126,E127"
 "  Highlight the 80 column line
 set colorcolumn=81
 highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
@@ -58,6 +63,9 @@ set backspace=2
 set expandtab
 set incsearch
 
+" tab size of 2 for html
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
 " Setup Ctrl-P
 let g:ctrlp_map = '<c-t>'
 let g:ctrlp_working_path_mode = 2
@@ -68,8 +76,11 @@ function! StripWhitespace ()
 endfunction
 map <leader>s :call StripWhitespace ()<CR>
 
+" nice paste toggle
 set pastetoggle=<leader>p
 
+" put backups somewhere that isn't annoying
+set backupdir=~/.vim/backup
 
 if has("mouse")
     set mouse=a
