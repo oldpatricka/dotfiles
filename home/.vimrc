@@ -14,6 +14,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'tsaleh/vim-matchit'
+Bundle 'chrisbra/changesPlugin'
 "Bundle 'klen/python-mode'
 
 let mapleader = ","
@@ -64,7 +65,7 @@ set expandtab
 set incsearch
 
 " tab size of 2 for html
-autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType html,htmldjango setlocal shiftwidth=2 tabstop=2 expandtab
 
 " Setup Ctrl-P
 let g:ctrlp_map = '<c-t>'
