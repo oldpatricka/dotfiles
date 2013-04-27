@@ -12,9 +12,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'ervandew/supertab'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
-Bundle 'kevinw/pyflakes-vim'
 Bundle 'tsaleh/vim-matchit'
-Bundle 'chrisbra/changesPlugin'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'nvie/vim-flake8'
+Bundle 'tpope/vim-dispatch'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'groenewege/vim-less'
+"Bundle 'scrooloose/syntastic'
 "Bundle 'klen/python-mode'
 
 let mapleader = ","
@@ -27,23 +31,30 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 " Set colours
 colorscheme solarized
 set background=light
+highlight clear SignColumn
 
 " Need this for python mode
 filetype plugin indent on
 
-" Disable Python folding
-let g:pymode_folding = 0
-let g:pymode_rope_goto_def_newwin = "new"
-let g:pymode_lint_ignore = "W,E501,E128,E126,E127"
+" Set vim-flake8 settings
+autocmd BufWritePost *.py call Flake8()
+let g:flake8_max_line_length=120
+
 "  Highlight the 80 column line
 set colorcolumn=81
 highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
+au VimEnter * highlight clear SignColumn
 
 " Set GUI display preferences
 set nonumber
 set ruler
 set statusline=%<%f\%h%m%r%=%-20.(line=%l\ \ col=%c%V\ \ totlin=%L%)\ \ \%h%m%r%=%-40(bytval=0x%B,%n%Y%)\%P
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/build/*,*/eggs/*
+
+hi SignColumn ctermbg=LightGray
+hi scmLineAdded ctermbg=LightGray
+hi scmLineChanged ctermbg=LightGray
+hi scmLineRemoved ctermbg=LightGray
 
 " Set locations
 set spellfile=~/.vimwords.add
@@ -82,7 +93,3 @@ set pastetoggle=<leader>p
 
 " put backups somewhere that isn't annoying
 set backupdir=~/.vim/backup
-
-if has("mouse")
-    set mouse=a
-endif
