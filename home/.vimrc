@@ -93,3 +93,6 @@ set pastetoggle=<leader>p
 
 " put backups somewhere that isn't annoying
 set backupdir=~/.vim/backup
+
+" make cron happy
+set backupskip=/tmp/*,/private/tmp/*
