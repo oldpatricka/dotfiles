@@ -2,24 +2,28 @@ set nocompatible
 filetype on
 filetype off
 
-" Set up vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" uses https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
 
-" Bundles (use :BundleInstall to install)
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'ervandew/supertab'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tsaleh/vim-matchit'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'nvie/vim-flake8'
-Bundle 'tpope/vim-dispatch'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'groenewege/vim-less'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'klen/python-mode'
+" Update with :PlugUpdate
+Plug 'gmarik/vundle'
+Plug 'tpope/vim-fugitive'
+Plug 'ervandew/supertab'
+Plug 'altercation/vim-colors-solarized'
+Plug 'kien/ctrlp.vim'
+Plug 'tmhedberg/matchit'
+Plug 'airblade/vim-gitgutter'
+Plug 'nvie/vim-flake8'
+Plug 'tpope/vim-dispatch'
+Plug 'kchmck/vim-coffee-script'
+Plug 'groenewege/vim-less'
+Plug 'derekwyatt/vim-scala'
+Plug 'tfnico/vim-gradle'
+Plug 'elzr/vim-json'
+Plug 'leafgarland/typescript-vim'
+
+call plug#end()
+filetype plugin indent on    " required
 
 let mapleader = ","
 syntax on
@@ -38,7 +42,6 @@ filetype plugin indent on
 
 " Set vim-flake8 settings
 autocmd BufWritePost *.py call Flake8()
-let g:flake8_max_line_length=120
 
 "  Highlight the 80 column line
 set colorcolumn=81
@@ -81,7 +84,9 @@ autocmd FileType html,htmldjango setlocal shiftwidth=2 tabstop=2 expandtab
 " Setup Ctrl-P
 let g:ctrlp_map = '<c-t>'
 let g:ctrlp_working_path_mode = 2
-
+let g:ctrlp_max_files=0
+let g:ctrlp_custom_ignore = 'node_modules'
+"
 " Strip trailing whitespace oh man it is the worst
 function! StripWhitespace ()
     exec ':%s/ \+$//gc'
@@ -96,3 +101,6 @@ set backupdir=~/.vim/backup
 
 " make cron happy
 set backupskip=/tmp/*,/private/tmp/*
+
+" make Jenkinsfiles be interpreted as groovy
+autocmd BufNewFile,BufRead Jenkinsfile set syntax=groovy
